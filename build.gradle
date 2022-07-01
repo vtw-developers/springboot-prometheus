@@ -1,0 +1,39 @@
+plugins {
+    id 'org.springframework.boot' version '2.7.1'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id 'java'
+}
+
+dependencyManagement {
+    imports {
+        mavenBom 'org.apache.camel.springboot:camel-spring-boot-dependencies:3.17.0'
+    }
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-actuator'
+    implementation 'org.apache.camel.springboot:camel-spring-boot-starter'
+    implementation 'org.apache.camel.springboot:camel-metrics-starter'
+    implementation 'org.apache.camel.springboot:camel-micrometer-starter'
+    implementation 'org.apache.camel.springboot:camel-kafka-starter'
+    implementation 'org.apache.camel.springboot:camel-opentracing-starter'
+    implementation 'io.opentracing.contrib:opentracing-spring-jaeger-starter:3.3.1'
+    implementation 'org.apache.camel:camel-yaml-dsl'
+    implementation 'org.apache.camel:camel-endpointdsl'
+    implementation 'io.micrometer:micrometer-registry-prometheus'
+    runtimeOnly 'io.micrometer:micrometer-registry-prometheus'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
